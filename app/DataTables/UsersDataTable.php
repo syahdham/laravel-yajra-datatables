@@ -38,7 +38,11 @@ class UsersDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->newQuery();
+        $roleId = $this->request->get('role_id');
+
+        return User::with('role')->when($roleId, function ($query) use($roleId) {
+            return $query->where('role_id', $roleId);
+        });
     }
 
     /**
