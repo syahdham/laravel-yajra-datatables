@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\UsersDataTable;
 use App\Models\Role;
+use App\Models\User;
 
 class UsersController extends Controller
 {
@@ -13,13 +14,10 @@ class UsersController extends Controller
         return $dataTable->render('users.index', compact('roles'));
     }
 
-    public function edit()
+    public function destroy(User $user)
     {
+        $user->delete();
 
-    }
-
-    public function delete()
-    {
-
+        return redirect()->back();
     }
 }
