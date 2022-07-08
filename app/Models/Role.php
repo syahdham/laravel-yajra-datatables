@@ -9,5 +9,8 @@ class Role extends Model
 {
     use HasFactory;
 
+    const USER = 1;
+    const ADMIN = 2;
+
     protected $fillable = ['name'];
 }

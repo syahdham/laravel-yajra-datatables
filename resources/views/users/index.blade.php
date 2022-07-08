@@ -66,17 +66,24 @@
                         url: url,
                         data: {
                             '_method': 'DELETE',
-                            '_token': '{{ csrf_token() }}'
+                            '_token': '{{ csrf_token() }}',
                         },
-                        success: function() {
+                        success: function(data) {
                             Swal.fire(
                                 'Deleted!',
-                                'Your file has been deleted.',
+                                data.message,
                                 'success'
                             )
 
                             table.DataTable().ajax.reload()
 
+                        },
+                        error: function (data) {
+                            Swal.fire(
+                                'Deleted!',
+                                data.responseJSON.message,
+                                'error'
+                            )
                         }
                     })
 
